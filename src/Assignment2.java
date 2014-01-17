@@ -1,6 +1,8 @@
-import acm.graphics.*;
-import acm.program.*;
 import java.awt.Color;
+
+import acm.graphics.GOval;
+import acm.graphics.GRect;
+import acm.program.GraphicsProgram;
 
 public class Assignment2 extends GraphicsProgram
 {
@@ -35,29 +37,29 @@ public class Assignment2 extends GraphicsProgram
 			{
 				for (int i=0; i < BRICK_COLUMNS; i++)
 					{
-						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT);
+						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT,0,1,1);
 					}
 			}
 			else if (j<4)
 			{
 				for (int i=0; i < BRICK_COLUMNS; i++)
 					{
-						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT);
+						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT,.892,1,1);
 					}
 			}
 		}//end j for loop
 		
 		makeOval();
-		makeRect(1,1,APPLET_WIDTH/2-PADDLE_WIDTH/2,0,(APPLET_HEIGHT-(PADDLE_Y_OFFSET+PADDLE_HEIGHT)),PADDLE_WIDTH,PADDLE_HEIGHT);
+		makeRect(1,1,APPLET_WIDTH/2-PADDLE_WIDTH/2,0,(APPLET_HEIGHT-(PADDLE_Y_OFFSET+PADDLE_HEIGHT)),PADDLE_WIDTH,PADDLE_HEIGHT,0,0,0);
 	}//end run() method
 
-	public void makeRect (int x, int y, int a, int b, int c, int d, int e)
+	public void makeRect (int x, int y, int a, int f, int c, int d, int e, int h, int s, int b, Color color)
 	{
 	//x value is 
 		GRect rect;
-		rect = new GRect(a*x,b+c*y,d,e);
-		//rect.setColor(Color.BLACK);
-		rect.setFillColor(Color.RED);
+		rect = new GRect(a*x,f+c*y,d,e);
+		rect.setColor(Color.BLACK);
+		rect.setFillColor(color);
 		rect.setFilled(true);
 		add(rect);
 	}//end makeRect
