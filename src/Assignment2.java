@@ -19,8 +19,8 @@ public class Assignment2 extends GraphicsProgram
 	private static final int BRICK_WIDTH = APPLET_WIDTH/BRICK_COLUMNS-SEPARATION; 
 	// Calculated so that it fills the space provided 
 	private static final int BALL_RADIUS = 10;
-	private static final int BALL_START_X = APPLET_WIDTH/2-BALL_RADIUS/2;
-	private static final int BALL_START_Y = APPLET_HEIGHT/2-BALL_RADIUS/2;
+	private static final int BALL_START_X = APPLET_WIDTH/2-BALL_RADIUS;
+	private static final int BALL_START_Y = APPLET_HEIGHT/2-BALL_RADIUS;
 	
 	
 	public void run()
@@ -33,42 +33,51 @@ public class Assignment2 extends GraphicsProgram
 		
 		for (int j=0; j < BRICK_ROWS; j++)
 		{
+			int xCoord = 0;
+			int yCoord = 0;
+			
 			if (j<2)
 			{
+				
 				for (int i=0; i < BRICK_COLUMNS; i++)
 					{
-						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT,0,1,1);
+						xCoord = i*(SEPARATION + BRICK_WIDTH);
+						yCoord = BRICK_Y_OFFSET+(BRICK_HEIGHT + SEPARATION)*j;
+						makeBrick(xCoord,yCoord,BRICK_WIDTH,BRICK_HEIGHT,Color.RED);
 					}
 			}
 			else if (j<4)
 			{
 				for (int i=0; i < BRICK_COLUMNS; i++)
 					{
-						makeRect(i,j,(SEPARATION + BRICK_WIDTH),BRICK_Y_OFFSET,(BRICK_HEIGHT + SEPARATION),BRICK_WIDTH, BRICK_HEIGHT,.892,1,1);
+						xCoord = i*(SEPARATION + BRICK_WIDTH);
+						yCoord = BRICK_Y_OFFSET+(BRICK_HEIGHT + SEPARATION)*j;	
+						makeBrick(xCoord,yCoord,BRICK_WIDTH,BRICK_HEIGHT,Color.BLACK);
 					}
 			}
 		}//end j for loop
 		
-		makeOval();
-		makeRect(1,1,APPLET_WIDTH/2-PADDLE_WIDTH/2,0,(APPLET_HEIGHT-(PADDLE_Y_OFFSET+PADDLE_HEIGHT)),PADDLE_WIDTH,PADDLE_HEIGHT,0,0,0);
+		makePaddle();
+		
+		makeBrick(APPLET_WIDTH/2-PADDLE_WIDTH/2,(APPLET_HEIGHT-(PADDLE_Y_OFFSET+PADDLE_HEIGHT)),PADDLE_WIDTH,PADDLE_HEIGHT,Color.BLACK);
 	}//end run() method
 
-	public void makeRect (int x, int y, int a, int f, int c, int d, int e, int h, int s, int b, Color color)
+	public void makeBrick (int xVal, int yVal, int width, int height, Color color)
 	{
 	//x value is 
 		GRect rect;
-		rect = new GRect(a*x,f+c*y,d,e);
+		rect = new GRect(xVal, yVal, width, height);
 		rect.setColor(Color.BLACK);
 		rect.setFillColor(color);
 		rect.setFilled(true);
 		add(rect);
 	}//end makeRect
 	
-	public void makeOval ()
+	public void makePaddle ()
 	{
 	//x value is 
 		GOval oval;
-		oval = new GOval(BALL_START_X,BALL_START_Y,BALL_RADIUS, BALL_RADIUS);
+		oval = new GOval(BALL_START_X,BALL_START_Y,BALL_RADIUS*2, BALL_RADIUS*2);
 		//rect.setColor(Color.BLACK);
 		oval.setFillColor(Color.BLACK);
 		oval.setFilled(true);
