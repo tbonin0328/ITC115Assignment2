@@ -49,7 +49,7 @@ public class Assignment2 extends GraphicsProgram
 	
 	// Create color array:
 	
-	Color[]colors = {
+	Color[] brickColors = {
 			Color.RED,
 			Color.ORANGE,
 			Color.YELLOW,
@@ -66,7 +66,8 @@ public class Assignment2 extends GraphicsProgram
 		
 		for (int j = 0; j < BRICK_ROWS; j++)
 		{
-			Color color = colors[(int)(j*0.5)];
+			Color brickColor = brickColors[(int)(j*0.5)];
+			
 			int xFactor = SEPARATION + BRICK_WIDTH;
 			int yFactor =  BRICK_Y_OFFSET + (BRICK_HEIGHT + SEPARATION)*j;
 			
@@ -74,13 +75,13 @@ public class Assignment2 extends GraphicsProgram
 					{					
 						int xCoord = i * xFactor;
 						int yCoord = yFactor;
-						makeBrick(xCoord, yCoord, BRICK_WIDTH,BRICK_HEIGHT, color);
+						makeBrick(xCoord, yCoord, BRICK_WIDTH,BRICK_HEIGHT, brickColor);
 					}//end i loop
 		}//end j loop
 		
-		// Use makeBall method to create ball:
+		// Use makeBall method to create ball using ball constants and color:
 		
-		makeBall();
+		makeBall(BALL_START_X, BALL_START_Y, BALL_RADIUS*2, BALL_RADIUS*2, Color.BLACK);
 		
 		// Create variables for paddle coordinates and use makeBrick method to create
 		// paddle using paddle variables and constants:
@@ -99,23 +100,23 @@ public class Assignment2 extends GraphicsProgram
 	{
 		// Create GRect object that can be used for all bricks in program:
 		
-		GRect rect;
-		rect = new GRect(xVal, yVal, width, height);
-		rect.setColor(Color.BLACK);
-		rect.setFillColor(color);
-		rect.setFilled(true);
-		add(rect);
+		GRect brick;
+		brick = new GRect(xVal, yVal, width, height);
+		brick.setColor(Color.BLACK);
+		brick.setFillColor(color);
+		brick.setFilled(true);
+		add(brick);
 	}//end makeBrick method
 	
-	public void makeBall ()
+	public void makeBall (int xVal, int yVal, int width, int height, Color color)
 	{
 		// Create GOval object that meets specifications for game ball:
 		
-		GOval oval;
-		oval = new GOval(BALL_START_X, BALL_START_Y, BALL_RADIUS*2, BALL_RADIUS*2);
-		oval.setFillColor(Color.BLACK);
-		oval.setFilled(true);
-		add(oval);
+		GOval ball;
+		ball = new GOval(xVal, yVal, width, height);
+		ball.setFillColor(color);
+		ball.setFilled(true);
+		add(ball);
 	}//end makeBall method
 	
 }//end class Assignment2
